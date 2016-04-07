@@ -1,0 +1,29 @@
+﻿@model IEnumerable<RemixReview.Models.Review>
+
+@{
+    ViewBag.Title = "Music Reviews";
+}
+
+<h2>Reviews for @ViewBag.musicFileName</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReviewText)
+        </th>
+    </tr>
+
+    @foreach (var review in Model)
+    {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => review.User.UserName)</td>
+        <td>@Html.DisplayFor(modelItem => review.ReviewText)</td>
+    </tr>
+    }
+</table>
+
+@Html.ActionLink("Return to music list", "ListMusic", "Music")
+

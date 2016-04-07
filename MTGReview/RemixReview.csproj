@@ -180,6 +180,10 @@
     <Compile Include="Migrations\201604022228050_Initial.Designer.cs">
       <DependentUpon>201604022228050_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604071730272_Users.cs" />
+    <Compile Include="Migrations\201604071730272_Users.Designer.cs">
+      <DependentUpon>201604071730272_Users.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -266,6 +270,9 @@
     <Content Include="Views\Music\Details.cshtml" />
     <Content Include="Views\Music\Edit.cshtml" />
     <Content Include="Views\Music\Index.cshtml" />
+    <Content Include="Views\Reviews\ListOfReviewsByMusic.cshtml" />
+    <Content Include="Views\Music\ListMusic.cshtml" />
+    <Content Include="Views\Home\Admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -278,6 +285,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201604022228050_Initial.resx">
       <DependentUpon>201604022228050_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604071730272_Users.resx">
+      <DependentUpon>201604071730272_Users.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

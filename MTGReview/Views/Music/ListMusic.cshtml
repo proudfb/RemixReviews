@@ -1,14 +1,10 @@
 ﻿@model IEnumerable<RemixReview.Models.Music>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "List Music";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h2>List Music</h2>
 
 @using (Html.BeginForm())
 {
@@ -17,6 +13,7 @@
         <input type="submit" value="Search" />
     </p>
 }
+
 <table class="table">
     <tr>
         <th>
@@ -37,7 +34,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.FileName)
+            @Html.ActionLink(item.FileName, "Details", new { id = item.ID })
         </td>
         <td>
             <a href="@item.Source">OverClocked Remix</a>
@@ -49,9 +46,7 @@
             @Html.DisplayFor(modelItem => item.Artist)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Reviews", "ListOfReviewsByMusic", "Reviews", new { id= item.ID}, null)
         </td>
     </tr>
 }

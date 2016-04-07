@@ -27,6 +27,18 @@ namespace RemixReview.Controllers
             return View(model.ToList());
         }
 
+        public ActionResult ListMusic(string searchString = null)
+        {
+            var model = from m in db.Musics
+                        select m;
+            if (!(searchString==null))
+            {
+                model = model.Where(m => m.FileName.Contains(searchString));
+            }
+                //db.Musics.ToList();
+            return View(model.ToList());
+        }
+
         // GET: Music/Details/5
         public ActionResult Details(int? id)
         {

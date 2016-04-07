@@ -136,5 +136,15 @@ namespace RemixReview.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult ListOfReviewsByMusic(int ID)
+        {
+            var reviews = db.Reviews
+                .Where(r => r.MusicID == ID)
+                .ToList();
+            var music = db.Musics.Find(ID);
+            ViewBag.musicFileName = music.FileName;
+            return View(reviews);
+        }
     }
 }
