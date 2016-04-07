@@ -15,9 +15,13 @@ namespace RemixReview.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Reviews
-        public ActionResult Index()
+        public ActionResult Index(string searchString = null)
         {
             var reviews = db.Reviews.Include(r => r.Music).Include(r => r.User);
+            if (!(searchString == null))
+            {
+                reviews = reviews.Where(r => r.Music.FileName.Contains(searchString));
+            }
             return View(reviews.ToList());
         }
 
