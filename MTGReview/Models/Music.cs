@@ -23,5 +23,7 @@ namespace RemixReview.Models
         public virtual ICollection<Review> reviews { get; set; }
 
         public string Artist { get; set; }
+
+        public string Category { get; set; }
     }
 }

@@ -184,6 +184,10 @@
     <Compile Include="Migrations\201604071730272_Users.Designer.cs">
       <DependentUpon>201604071730272_Users.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604080020564_Category.cs" />
+    <Compile Include="Migrations\201604080020564_Category.Designer.cs">
+      <DependentUpon>201604080020564_Category.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -276,6 +280,7 @@
     <Content Include="Views\Reviews\ListOfReviewsByMusic.cshtml" />
     <Content Include="Views\Music\ListMusic.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
+    <Content Include="Views\Music\ListOfMusicByCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -291,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604071730272_Users.resx">
       <DependentUpon>201604071730272_Users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604080020564_Category.resx">
+      <DependentUpon>201604080020564_Category.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

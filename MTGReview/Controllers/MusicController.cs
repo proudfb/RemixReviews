@@ -39,6 +39,14 @@ namespace RemixReview.Controllers
             return View(model.ToList());
         }
 
+        public ActionResult ListOfMusicByCategory(string category)
+        {
+            var music = db.Musics
+                .Where(c => c.Category == category)
+                .ToList();
+            return View(music);
+        }
+
         // GET: Music/Details/5
         public ActionResult Details(int? id)
         {

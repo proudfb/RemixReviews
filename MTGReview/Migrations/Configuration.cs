@@ -35,7 +35,8 @@ namespace RemixReview.Migrations
                         FileName = "Ocean Lanterns",
                         Source = @"http://ocremix.org/remix/OCR03203",
                         Duration = new TimeSpan(0, 4, 9),
-                        Artist = "Emunator"
+                        Artist = "Emunator",
+                        Category = "Relaxing"
                     },
 
                     new Music
@@ -43,7 +44,8 @@ namespace RemixReview.Migrations
                         FileName = "Beneath the Surface",
                         Source = @"http://ocremix.org/remix/OCR01242",
                         Duration = new TimeSpan(0, 6, 20),
-                        Artist = "Vigilante"
+                        Artist = "Vigilante",
+                        Category = "Relaxing"
                     },
 
                     new Music
@@ -51,7 +53,8 @@ namespace RemixReview.Migrations
                         FileName = "Death on the Snowfield",
                         Source = @"http://ocremix.org/remix/OCR00205",
                         Duration = new TimeSpan(0, 4, 1),
-                        Artist = "AmIEviL"
+                        Artist = "AmIEviL",
+                        Category= "Melancholy"
                     },
 
                     new Music
@@ -59,7 +62,8 @@ namespace RemixReview.Migrations
                         FileName = "Into the Green World",
                         Source = @"http://ocremix.org/remix/OCR02515",
                         Duration = new TimeSpan(0, 5, 40),
-                        Artist = "Sam Dillard"
+                        Artist = "Sam Dillard",
+                        Category="Adventerous"
                     },
 
                     new Music
@@ -67,7 +71,8 @@ namespace RemixReview.Migrations
                         FileName = "Dreams of Home",
                         Source = @"http://ocremix.org/remix/OCR02608",
                         Duration = new TimeSpan(0, 2, 33),
-                        Artist = "Chris | Amaterasu, waltzforluma"
+                        Artist = "Chris | Amaterasu, waltzforluma",
+                        Category="Melancholy"
                     },
 
                     new Music
@@ -75,7 +80,8 @@ namespace RemixReview.Migrations
                         FileName = "Dawn of a New Day",
                         Source = @"http://ocremix.org/remix/OCR02568",
                         Duration = new TimeSpan(0, 6, 46),
-                        Artist = "Docjazz4, FunkyEntropy, Theophany, XPRTNovice"
+                        Artist = "Docjazz4, FunkyEntropy, Theophany, XPRTNovice",
+                        Category= "Bright"
                     },
 
                     new Music
@@ -83,7 +89,8 @@ namespace RemixReview.Migrations
                         FileName = "Shikashi's Dream",
                         Source = @"http://ocremix.org/remix/OCR02481",
                         Duration = new TimeSpan(0, 5, 46),
-                        Artist = "anterrior"
+                        Artist = "anterrior",
+                        Category= "Relaxing"
                     },
 
                     new Music
@@ -91,7 +98,8 @@ namespace RemixReview.Migrations
                         FileName = "A Storm in the Desert",
                         Source = @"http://ocremix.org/remix/OCR01153",
                         Duration = new TimeSpan(0, 4, 30),
-                        Artist = "Tyler Heath"
+                        Artist = "Tyler Heath",
+                        Category="Epic"
                     },
 
                     new Music
@@ -99,7 +107,8 @@ namespace RemixReview.Migrations
                         FileName = "Lone Star",
                         Source = @"http://ocremix.org/remix/OCR02591",
                         Duration = new TimeSpan(0, 6, 2),
-                        Artist = "Pyro Paper Planes"
+                        Artist = "Pyro Paper Planes",
+                        Category= "Relaxing"
                     },
 
                     new Music
@@ -107,7 +116,8 @@ namespace RemixReview.Migrations
                         FileName = "Day's End",
                         Source = @"http://ocremix.org/remix/OCR01706",
                         Duration = new TimeSpan(0, 5, 0),
-                        Artist = "Sole Signal, Tweex"
+                        Artist = "Sole Signal, Tweex",
+                        Category="Bright"
                     },
 
                     new Music
@@ -115,7 +125,8 @@ namespace RemixReview.Migrations
                         FileName = "The Passing of the Blue Crown",
                         Source = @"http://ocremix.org/remix/OCR01723",
                         Duration = new TimeSpan(0, 4, 16),
-                        Artist = "Sixto Sounds, Steppo, zircon"
+                        Artist = "Sixto Sounds, Steppo, zircon",
+                        Category= "Epic"
                     },
 
                     new Music
@@ -123,7 +134,8 @@ namespace RemixReview.Migrations
                         FileName = "Melting Sun",
                         Source = @"http://ocremix.org/remix/OCR02505",
                         Duration = new TimeSpan(0, 5, 13),
-                        Artist = "Pyro Paper Planes"
+                        Artist = "Pyro Paper Planes",
+                        Category="Melancholy"
                     },
 
                     new Music
@@ -131,7 +143,8 @@ namespace RemixReview.Migrations
                         FileName = "Prelude to Darkness",
                         Source = @"http://ocremix.org/remix/OCR01014",
                         Duration = new TimeSpan(0, 4, 29),
-                        Artist = "Russell Cox"
+                        Artist = "Russell Cox",
+                        Category="Epic"
                     },
 
                     new Music
@@ -139,7 +152,8 @@ namespace RemixReview.Migrations
                         FileName = "Return to Elysian Lands",
                         Source = @"http://ocremix.org/remix/OCR01172",
                         Duration = new TimeSpan(0, 4, 57),
-                        Artist = "Nigel Simmons"
+                        Artist = "Nigel Simmons",
+                        Category="Epic"
                     },
 
                     new Music
@@ -147,7 +161,8 @@ namespace RemixReview.Migrations
                         FileName = "Catch Me",
                         Source = @"http://ocremix.org/remix/OCR03172",
                         Duration = new TimeSpan(0, 3, 26),
-                        Artist = "RoeTaKa"
+                        Artist = "RoeTaKa",
+                        Category= "Melancholy"
                     },
 
                     new Music
@@ -155,7 +170,8 @@ namespace RemixReview.Migrations
                         FileName = "Solitude",
                         Source = @"http://ocremix.org/remix/OCR02276",
                         Duration = new TimeSpan(0, 3, 21),
-                        Artist = "zircon, C-GPO"
+                        Artist = "zircon, C-GPO",
+                        Category="Relaxing"
                     },
 
                     new Music
@@ -163,7 +179,8 @@ namespace RemixReview.Migrations
                         FileName = "Meteorites and Rabbits",
                         Source = @"http://ocremix.org/remix/OCR01944",
                         Duration = new TimeSpan(0, 3, 24),
-                        Artist = "jmr"
+                        Artist = "jmr",
+                        Category="Relaxing"
                     },
 
                     new Music
@@ -171,7 +188,8 @@ namespace RemixReview.Migrations
                         FileName = "Sunken Suite",
                         Source = @"http://ocremix.org/remix/OCR00405",
                         Duration = new TimeSpan(0, 2, 47),
-                        Artist = "djpretzel"
+                        Artist = "djpretzel",
+                        Category="Relaxing"
                     },
 
                     new Music
@@ -179,7 +197,8 @@ namespace RemixReview.Migrations
                         FileName = "A Fistful of Nickels",
                         Source = @"http://ocremix.org/remix/OCR02687",
                         Duration = new TimeSpan(0, 3, 28),
-                        Artist = "zircon, XPRTNovice, Jillian Aversa, Jeff Ball"
+                        Artist = "zircon, XPRTNovice, Jillian Aversa, Jeff Ball",
+                        Category="Adventerous"
                     },
 
                     new Music
@@ -187,7 +206,8 @@ namespace RemixReview.Migrations
                         FileName = "Rare Respite",
                         Source = @"http://ocremix.org/remix/OCR02007",
                         Duration = new TimeSpan(0, 4, 29),
-                        Artist = "Andrew Lim"
+                        Artist = "Andrew Lim",
+                        Category="Relaxing"
                     }
                     );
             #endregion
