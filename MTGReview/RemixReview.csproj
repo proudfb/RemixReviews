@@ -281,6 +281,7 @@
     <Content Include="Views\Music\ListMusic.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
     <Content Include="Views\Music\ListOfMusicByCategory.cshtml" />
+    <Content Include="Views\Reviews\UserCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

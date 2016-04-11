@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using RemixReview.Models;
 
 namespace RemixReview.Controllers
@@ -128,6 +129,25 @@ namespace RemixReview.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public ActionResult UserCreate(string userID, int musicID)
+        {
+            Review userReview = new Review { UserId = userID, MusicID = musicID };
+            return View(userReview);
+        }
+
+        [HttpPost]
+        public ActionResult UserCreate(Review review)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Reviews.Add(review);
+                db.SaveChanges();
+                return RedirectToAction("ListOfReviewsByMusic", new { ID = review.MusicID });
+            }
+            return View(review);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -144,6 +164,8 @@ namespace RemixReview.Controllers
                 .ToList();
             var music = db.Musics.Find(ID);
             ViewBag.musicFileName = music.FileName;
+            ViewBag.MusicID = music.ID;
+            ViewBag.UserID = User.Identity.GetUserId();
             return View(reviews);
         }
     }
