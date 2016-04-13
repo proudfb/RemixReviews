@@ -109,4 +109,44 @@ namespace RemixReview.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+
+    public class EditUserViewModel
+    {
+        [Key]
+        [Required]
+        [Display(Name ="User Name")]
+        public string UserName { get; set; }
+
+        [Required]
+        public string Email { get; set; }
+
+        public EditUserViewModel() { }
+
+        public EditUserViewModel(User user)
+        {
+            UserName = user.UserName;
+            Email = user.Email;
+        }
+
+    }
+
+    public class CreateUserViewModel
+    {
+        [Key]
+        [Required]
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
+
+        [Required]
+        public string Email { get; set; }
+
+        public CreateUserViewModel() { }
+
+        public CreateUserViewModel(User user)
+        {
+            UserName = user.UserName;
+            Email = user.Email;
+        }
+
+    }
 }
