@@ -8,7 +8,7 @@
 <h3>User: @ViewBag.UserName</h3>
 
 <p>
-    @Html.ActionLink("Add a Role", "Create")
+    @Html.ActionLink("Add a Role", "AddRoleToUser", new { userName = username })
 </p>
 <table class="table">
     <tr>
