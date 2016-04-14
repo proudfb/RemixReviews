@@ -92,20 +92,29 @@ namespace RemixReview.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include ="UserName, Email")] CreateUserViewModel user)
+        public async Task<ActionResult> Create(CreateUserViewModel user)
         {
             var db = new ApplicationDbContext();
 
             if (ModelState.IsValid)
             {
-                var newUser = new User();
+                var newUser = new User
+                {
 
-                newUser.UserName = user.UserName;
-                newUser.Email= user.Email;
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Age = user.Age
+                };
 
-                db.Users.Add(newUser);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var result = await UserManager.CreateAsync(newUser, user.Password);
+                if (result.Succeeded) {
+                    UserManager.AddToRole(newUser.Id, "User");
+
+                    return RedirectToAction("Index", "Account");
+                }
+                AddErrors(result);
             }
 
             return View(user);
@@ -132,7 +141,7 @@ namespace RemixReview.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include ="UserName, Email")] EditUserViewModel editedUser)
+        public ActionResult Edit([Bind(Include ="UserName, Email, FirstName, LastName, Age, Password, ConfirmPassword")] EditUserViewModel editedUser)
         {
             if (ModelState.IsValid)
             {
@@ -140,6 +149,12 @@ namespace RemixReview.Controllers
                 var user = db.Users.First(u => u.UserName == editedUser.UserName);
 
                 user.Email = editedUser.Email;
+                user.FirstName = editedUser.FirstName;
+                user.LastName = editedUser.LastName;
+                user.Age = editedUser.Age;
+
+                PasswordHasher ph = new PasswordHasher();
+                user.PasswordHash = ph.HashPassword(editedUser.Password);
 
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();

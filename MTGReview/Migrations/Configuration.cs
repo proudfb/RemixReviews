@@ -6,6 +6,7 @@ namespace RemixReview.Migrations
     using System.Linq;
     using RemixReview.Models;
     using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     internal sealed class Configuration : DbMigrationsConfiguration<RemixReview.Models.ApplicationDbContext>
     {
         public Configuration()
@@ -212,6 +213,28 @@ namespace RemixReview.Migrations
                     );
             #endregion
 
+            #region Role Seed
+
+            if (!context.Roles.Any(r => r.Name == "Admin"))
+            {
+                var store = new RoleStore<IdentityRole>(context);
+                var manager = new RoleManager<IdentityRole>(store);
+                var role = new IdentityRole { Name = "Admin" };
+
+                manager.Create(role);
+            }
+
+            if (!context.Roles.Any(r => r.Name == "User"))
+            {
+                var store = new RoleStore<IdentityRole>(context);
+                var manager = new RoleManager<IdentityRole>(store);
+                var role = new IdentityRole { Name = "User" };
+
+                manager.Create(role);
+            }
+
+            #endregion
+
             #region User Seed
             var PasswordHash = new PasswordHasher();
             string password = PasswordHash.HashPassword("Password123!");
@@ -220,35 +243,51 @@ namespace RemixReview.Migrations
                 {
                     UserName = "Alice",
                     PasswordHash = password,
-                    Email = "Alice@example.net"
+                    Email = "Alice@example.net",
+                    FirstName="Alice",
+                    LastName="Exampleson",
+                    Age=21
+                    
                 },
 
                 new User
                 {
                     UserName = "Bob",
                     PasswordHash = password,
-                    Email = "Bob@example.net"
+                    Email = "Bob@example.net",
+                    FirstName = "Bob",
+                    LastName = "Exampleson",
+                    Age = 21
                 },
 
                 new User
                 {
                     UserName = "Charlie",
                     PasswordHash = password,
-                    Email = "Charlie@example.net"
+                    Email = "Charlie@example.net",
+                    FirstName = "Charlie",
+                    LastName = "Exampleson",
+                    Age = 21
                 },
 
                 new User
                 {
                     UserName = "Don",
                     PasswordHash = password,
-                    Email = "Don@example.net"
+                    Email = "Don@example.net",
+                    FirstName = "Don",
+                    LastName = "Exampleson",
+                    Age = 21
                 },
 
                 new User
                 {
                     UserName = "Eve",
                     PasswordHash = password,
-                    Email = "Eve@example.net"
+                    Email = "Eve@example.net",
+                    FirstName = "Eve",
+                    LastName = "Exampleson",
+                    Age = 21
                 }
 
                 );
