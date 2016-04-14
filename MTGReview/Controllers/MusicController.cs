@@ -73,7 +73,7 @@ namespace RemixReview.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,FileName,Source,Duration,Artist")] Music music)
+        public ActionResult Create([Bind(Include = "ID,FileName,Source,Duration,Artist,Category")] Music music)
         {
             if (ModelState.IsValid)
             {
@@ -105,7 +105,7 @@ namespace RemixReview.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,FileName,Source,Duration,Artist")] Music music)
+        public ActionResult Edit([Bind(Include = "ID,FileName,Source,Duration,Artist,Category")] Music music)
         {
             if (ModelState.IsValid)
             {

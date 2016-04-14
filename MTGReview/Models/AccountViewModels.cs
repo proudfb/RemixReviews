@@ -157,10 +157,10 @@ namespace RemixReview.Models
 
     public class CreateUserViewModel
     {
-        [Key]
-        [Required]
-        [Display(Name = "User Name")]
-        public string UserName { get; set; }
+        //[Key]
+        //[Required]
+        //[Display(Name = "User Name")]
+        //public string UserName { get; set; }
 
         [Required]
         public string Email { get; set; }
@@ -191,7 +191,7 @@ namespace RemixReview.Models
 
         public CreateUserViewModel(User user)
         {
-            UserName = user.UserName;
+            //UserName = user.UserName;
             Email = user.Email;
             FirstName = user.FirstName;
             LastName = user.LastName;

@@ -101,7 +101,7 @@ namespace RemixReview.Controllers
                 var newUser = new User
                 {
 
-                    UserName = user.UserName,
+                    UserName = user.Email,
                     Email = user.Email,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
