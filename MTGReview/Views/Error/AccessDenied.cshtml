@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Access Denied";
+}
+
+<h2>Access Denied</h2>
+
+<p>Warning! Unauthorized access attempt detected! Access to this page has been denied.</p>
+<p>You will be returned to the Home Page momentarily, citizen. If this does not occur within 5 seconds, <a href="@Url.Action("Index", "Home")">click here.</a></p>
+
+<script>
+    setTimeout(function () {
+        window.location.replace('@Url.Action("Index", "Home")')
+    }, 5000);
+</script>
+

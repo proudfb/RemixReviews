@@ -13,6 +13,7 @@ using RemixReview.Models;
 using System.Net;
 using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using RemixReview.CustomAttributes;
 
 namespace RemixReview.Controllers
 {
@@ -56,6 +57,7 @@ namespace RemixReview.Controllers
             }
         }
 
+        [AuthorizeOrRedirectAttribute(Roles ="Site Admin")]
         public ActionResult Index()
         {
             var db = new ApplicationDbContext();
@@ -71,6 +73,7 @@ namespace RemixReview.Controllers
             return View(model);
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Details(string username = null)
         {
             var db = new ApplicationDbContext();
@@ -85,6 +88,7 @@ namespace RemixReview.Controllers
             return View(model);
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Create()
         {
             return View();
@@ -92,6 +96,7 @@ namespace RemixReview.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public async Task<ActionResult> Create(CreateUserViewModel user)
         {
             var db = new ApplicationDbContext();
@@ -120,6 +125,7 @@ namespace RemixReview.Controllers
             return View(user);
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Edit(string username = null)
         {
             if (username == null)
@@ -141,6 +147,7 @@ namespace RemixReview.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Edit([Bind(Include ="UserName, Email, FirstName, LastName, Age, Password, ConfirmPassword")] EditUserViewModel editedUser)
         {
             if (ModelState.IsValid)
@@ -164,6 +171,7 @@ namespace RemixReview.Controllers
             return View(editedUser);
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Delete(string username = null)
         {
             var db = new ApplicationDbContext();
@@ -180,6 +188,7 @@ namespace RemixReview.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost, ActionName("Delete")]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult DeleteConfirmed(string username)
         {
             var db = new ApplicationDbContext();
@@ -189,6 +198,7 @@ namespace RemixReview.Controllers
             return RedirectToAction("Index");
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult ViewUsersRoles(string userName = null)
         {
             if(!string.IsNullOrWhiteSpace(userName))
@@ -221,6 +231,7 @@ namespace RemixReview.Controllers
             return View();
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult DeleteRoleForUser(string userName = null, string roleName = null)
         {
             if ((!string.IsNullOrWhiteSpace(userName)) || (!string.IsNullOrWhiteSpace(roleName)))
@@ -263,6 +274,7 @@ namespace RemixReview.Controllers
             }
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult AddRoleToUser(string userName = null)
         {
             List<string> roles;
@@ -280,8 +292,10 @@ namespace RemixReview.Controllers
 
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult AddRoleToUser(string roleName, string userName)
         {
             List<string> roles;

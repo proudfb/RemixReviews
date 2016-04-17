@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using RemixReview.Models;
+using RemixReview.CustomAttributes;
 
 namespace RemixReview.Controllers
 {
@@ -15,6 +16,7 @@ namespace RemixReview.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Music
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin")]
         public ActionResult Index(string searchString = null)
         {
             var model = from m in db.Musics
@@ -27,6 +29,7 @@ namespace RemixReview.Controllers
             return View(model.ToList());
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin")]
         public ActionResult ListMusic(string searchString = null)
         {
             var model = from m in db.Musics
@@ -39,6 +42,7 @@ namespace RemixReview.Controllers
             return View(model.ToList());
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin")]
         public ActionResult ListOfMusicByCategory(string category)
         {
             var music = db.Musics
@@ -48,6 +52,7 @@ namespace RemixReview.Controllers
         }
 
         // GET: Music/Details/5
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -63,6 +68,7 @@ namespace RemixReview.Controllers
         }
 
         // GET: Music/Create
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin")]
         public ActionResult Create()
         {
             return View();
@@ -86,6 +92,7 @@ namespace RemixReview.Controllers
         }
 
         // GET: Music/Edit/5
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -117,6 +124,7 @@ namespace RemixReview.Controllers
         }
 
         // GET: Music/Delete/5
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

@@ -215,11 +215,29 @@ namespace RemixReview.Migrations
 
             #region Role Seed
 
-            if (!context.Roles.Any(r => r.Name == "Admin"))
+            if (!context.Roles.Any(r => r.Name == "Site Admin"))
             {
                 var store = new RoleStore<IdentityRole>(context);
                 var manager = new RoleManager<IdentityRole>(store);
-                var role = new IdentityRole { Name = "Admin" };
+                var role = new IdentityRole { Name = "Site Admin" };
+
+                manager.Create(role);
+            }
+
+            if (!context.Roles.Any(r => r.Name == "Music Admin"))
+            {
+                var store = new RoleStore<IdentityRole>(context);
+                var manager = new RoleManager<IdentityRole>(store);
+                var role = new IdentityRole { Name = "Music Admin" };
+
+                manager.Create(role);
+            }
+
+            if (!context.Roles.Any(r => r.Name == "Reviewer"))
+            {
+                var store = new RoleStore<IdentityRole>(context);
+                var manager = new RoleManager<IdentityRole>(store);
+                var role = new IdentityRole { Name = "Reviewer" };
 
                 manager.Create(role);
             }
@@ -236,61 +254,102 @@ namespace RemixReview.Migrations
             #endregion
 
             #region User Seed
-            var PasswordHash = new PasswordHasher();
-            string password = PasswordHash.HashPassword("Password123!");
-            context.Users.AddOrUpdate(u => u.UserName,
-                new User
-                {
-                    UserName = "Alice",
-                    PasswordHash = password,
-                    Email = "Alice@example.net",
-                    FirstName="Alice",
-                    LastName="Exampleson",
-                    Age=21
-                    
-                },
 
-                new User
+            #region UserStore Users
+                //this method of seeding users (using the user store) comes from http://blog.falafel.com/seed-database-initial-users-mvc-5/
+                if (!(context.Users.Any(u => u.UserName == "siteadmin@rmxreviews.com")))
                 {
-                    UserName = "Bob",
-                    PasswordHash = password,
-                    Email = "Bob@example.net",
-                    FirstName = "Bob",
-                    LastName = "Exampleson",
-                    Age = 21
-                },
-
-                new User
-                {
-                    UserName = "Charlie",
-                    PasswordHash = password,
-                    Email = "Charlie@example.net",
-                    FirstName = "Charlie",
-                    LastName = "Exampleson",
-                    Age = 21
-                },
-
-                new User
-                {
-                    UserName = "Don",
-                    PasswordHash = password,
-                    Email = "Don@example.net",
-                    FirstName = "Don",
-                    LastName = "Exampleson",
-                    Age = 21
-                },
-
-                new User
-                {
-                    UserName = "Eve",
-                    PasswordHash = password,
-                    Email = "Eve@example.net",
-                    FirstName = "Eve",
-                    LastName = "Exampleson",
-                    Age = 21
+                    var userStore = new UserStore<User>(context);
+                    var userManager = new UserManager<User>(userStore);
+                    var userToInsert = new User { UserName = "siteadmin@rmxreviews.com", FirstName = "Site", LastName = "Admin", Age = 23, Email = "siteadmin@rmxreviews.com" };
+                    userManager.Create(userToInsert, "Rmx123!");
+                    userManager.AddToRole(userToInsert.Id, "Site Admin");
                 }
 
-                );
+                if (!(context.Users.Any(u => u.UserName == "musicadmin@rmxreviews.com")))
+                {
+                    var userStore = new UserStore<User>(context);
+                    var userManager = new UserManager<User>(userStore);
+                    var userToInsert = new User { UserName = "musicadmin@rmxreviews.com", FirstName = "Music", LastName = "Admin", Age = 58, Email = "musicadmin@rmxreviews.com" };
+                    userManager.Create(userToInsert, "Rmx123!");
+                    userManager.AddToRole(userToInsert.Id, "Music Admin");
+                }
+
+                if (!(context.Users.Any(u => u.UserName == "reviewer@rmxreviews.com")))
+                {
+                    var userStore = new UserStore<User>(context);
+                    var userManager = new UserManager<User>(userStore);
+                    var userToInsert = new User { UserName = "reviewer@rmxreviews.com", FirstName = "Basic", LastName = "Reviewer", Age = 16, Email = "reviewer@rmxreviews.com" };
+                    userManager.Create(userToInsert, "Rmx123!");
+                    userManager.AddToRole(userToInsert.Id, "Reviewer");
+                }
+
+                if (!(context.Users.Any(u => u.UserName == "user@rmxreviews.com")))
+                {
+                    var userStore = new UserStore<User>(context);
+                    var userManager = new UserManager<User>(userStore);
+                    var userToInsert = new User { UserName = "user@rmxreviews.com", FirstName = "Basic", LastName = "User", Age = 3, Email = "user@rmxreviews.com" };
+                    userManager.Create(userToInsert, "Rmx123!");
+                    userManager.AddToRole(userToInsert.Id, "User");
+                } 
+            #endregion
+
+            #region Legacy Users
+            var PasswordHash = new PasswordHasher();
+                string password = PasswordHash.HashPassword("Password123!");
+                context.Users.AddOrUpdate(u => u.UserName,
+                    new User
+                    {
+                        UserName = "Alice",
+                        PasswordHash = password,
+                        Email = "Alice@example.net",
+                        FirstName = "Alice",
+                        LastName = "Exampleson",
+                        Age = 21
+                    },
+
+                    new User
+                    {
+                        UserName = "Bob",
+                        PasswordHash = password,
+                        Email = "Bob@example.net",
+                        FirstName = "Bob",
+                        LastName = "Exampleson",
+                        Age = 21
+                    },
+
+                    new User
+                    {
+                        UserName = "Charlie",
+                        PasswordHash = password,
+                        Email = "Charlie@example.net",
+                        FirstName = "Charlie",
+                        LastName = "Exampleson",
+                        Age = 21
+                    },
+
+                    new User
+                    {
+                        UserName = "Don",
+                        PasswordHash = password,
+                        Email = "Don@example.net",
+                        FirstName = "Don",
+                        LastName = "Exampleson",
+                        Age = 21
+                    },
+
+                    new User
+                    {
+                        UserName = "Eve",
+                        PasswordHash = password,
+                        Email = "Eve@example.net",
+                        FirstName = "Eve",
+                        LastName = "Exampleson",
+                        Age = 21
+                    }
+
+                    ); 
+                #endregion
 
             #endregion
 
