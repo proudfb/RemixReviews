@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using RemixReview.CustomAttributes;
 using RemixReview.Models;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,13 @@ namespace RemixReview.Controllers
 
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: IdentityRole
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Index()
         {
             return View(db.Roles.ToList());
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -36,6 +39,7 @@ namespace RemixReview.Controllers
             return View(role);
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Create()
         {
             return View();
@@ -43,6 +47,7 @@ namespace RemixReview.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Create([Bind(Include = "ID,Name")] IdentityRole role)
         {
             if (ModelState.IsValid)
@@ -55,6 +60,7 @@ namespace RemixReview.Controllers
             return View(role);
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -72,6 +78,7 @@ namespace RemixReview.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Edit([Bind(Include ="ID,Name")] IdentityRole role)
         {
             if (ModelState.IsValid)
@@ -84,6 +91,7 @@ namespace RemixReview.Controllers
             return View(role);
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -102,6 +110,7 @@ namespace RemixReview.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult DeleteConfirmed(string id)
         {
             IdentityRole identityRoleTemp = db.Roles.Find(id);

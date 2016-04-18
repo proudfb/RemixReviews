@@ -79,6 +79,7 @@ namespace RemixReview.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin")]
         public ActionResult Create([Bind(Include = "ID,FileName,Source,Duration,Artist,Category")] Music music)
         {
             if (ModelState.IsValid)
@@ -112,6 +113,7 @@ namespace RemixReview.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin")]
         public ActionResult Edit([Bind(Include = "ID,FileName,Source,Duration,Artist,Category")] Music music)
         {
             if (ModelState.IsValid)
@@ -142,6 +144,7 @@ namespace RemixReview.Controllers
         // POST: Music/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Music music = db.Musics.Find(id);
