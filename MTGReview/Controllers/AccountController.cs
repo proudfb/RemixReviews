@@ -171,6 +171,53 @@ namespace RemixReview.Controllers
             return View(editedUser);
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin, Music Admin, Reviewer, User")]
+        public ActionResult UserEdit()
+        {
+            string username = User.Identity.GetUserName();
+            if (username == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var db = new ApplicationDbContext();
+            var user = db.Users.First(u => u.UserName == username);
+            var model = new EditUserViewModel(user);
+
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin, Music Admin, Reviewer, User")]
+        public ActionResult UserEdit([Bind(Include = "UserName, Email, FirstName, LastName, Age, Password, ConfirmPassword")] EditUserViewModel editedUser)
+        {
+            if (ModelState.IsValid)
+            {
+                var db = new ApplicationDbContext();
+                var user = db.Users.First(u => u.UserName == editedUser.UserName);
+
+                user.Email = editedUser.Email;
+                user.FirstName = editedUser.FirstName;
+                user.LastName = editedUser.LastName;
+                user.Age = editedUser.Age;
+
+                PasswordHasher ph = new PasswordHasher();
+                user.PasswordHash = ph.HashPassword(editedUser.Password);
+
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "Manage");
+            }
+
+            return View(editedUser);
+        }
+
         [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Delete(string username = null)
         {
