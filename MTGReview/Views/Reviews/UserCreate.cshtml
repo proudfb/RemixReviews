@@ -50,7 +50,8 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "ListOfReviewsByMusic", "Reviews", new { id = Model.ID }, null) |
+    @Html.ActionLink("Back to your reviews", "UserReviews")
 </div>
 
 @section Scripts {

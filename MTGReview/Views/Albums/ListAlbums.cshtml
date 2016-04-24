@@ -1,0 +1,47 @@
+﻿@model IEnumerable<RemixReview.Models.Album>
+
+@{
+    ViewBag.Title = "ListAlbums";
+}
+
+<h2>ListAlbums</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by Album Title: @Html.TextBox("searchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            Album Cover
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HomepageLink)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <img src="@item.ImageLink" alt="@item.Title"  height="100" width="90"/>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            <a href="@item.HomepageLink">Album Homepage</a>
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

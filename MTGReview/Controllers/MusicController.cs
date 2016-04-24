@@ -67,6 +67,21 @@ namespace RemixReview.Controllers
             return View(music);
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin,Reviewer,User")]
+        public ActionResult ViewDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Music music = db.Musics.Find(id);
+            if (music == null)
+            {
+                return HttpNotFound();
+            }
+            return View(music);
+        }
+
         // GET: Music/Create
         [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin")]
         public ActionResult Create()

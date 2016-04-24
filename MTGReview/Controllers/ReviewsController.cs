@@ -16,8 +16,9 @@ namespace RemixReview.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        
         // GET: Reviews
-        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin")]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin,Reviewer,User")]
         public ActionResult Index(string searchString = null)
         {
             var reviews = db.Reviews.Include(r => r.Music).Include(r => r.User);
@@ -28,6 +29,7 @@ namespace RemixReview.Controllers
             return View(reviews.ToList());
         }
 
+        #region Admin CRUD
         // GET: Reviews/Details/5
         [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin")]
         public ActionResult Details(int? id)
@@ -137,6 +139,36 @@ namespace RemixReview.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        #endregion
+
+        #region Reviewer CRUD
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin, Music Admin, Reviewer")]
+        public ActionResult UserReviews(string searchString = null)
+        {
+            string currentUser = User.Identity.GetUserId();
+            var reviews = db.Reviews.Include(m => m.Music)
+                .Where(u => u.User.Id.Equals(currentUser));
+            if (!(searchString == null))
+            {
+                reviews = reviews.Where(r => r.Music.FileName.Contains(searchString));
+            }
+            return View(reviews.ToList());
+        }
+
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin,Reviewer,User")]
+        public ActionResult UserReviewDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Review review = db.Reviews.Find(id);
+            if (review == null)
+            {
+                return HttpNotFound();
+            }
+            return View(review);
+        }
 
         [HttpGet]
         [AuthorizeOrRedirectAttribute(Roles = "Site Admin, Music Admin, Reviewer")]
@@ -161,6 +193,72 @@ namespace RemixReview.Controllers
             return View(review);
         }
 
+        [HttpGet]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin, Music Admin, Reviewer")]
+        public ActionResult UserEdit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Review review = db.Reviews.Find(id);
+            if (review == null)
+            {
+                return HttpNotFound();
+            }
+            if (review.UserId != User.Identity.GetUserId())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+            return View(review);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin,Reviewer")]
+        public ActionResult UserEdit([Bind(Include = "ID,UserId,MusicID,ReviewText")] Review review)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(review).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(review);
+        }
+
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin,Reviewer")]
+        public ActionResult UserDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Review review = db.Reviews.Find(id);
+            if (review == null)
+            {
+                return HttpNotFound();
+            }
+            if (review.UserId != User.Identity.GetUserId())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+            return View(review);
+        }
+
+        // POST: Reviews/Delete/5
+        [HttpPost, ActionName("UserDelete")]
+        [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin,Reviewer")]
+        public ActionResult UserDeleteConfirmed(int id)
+        {
+            Review review = db.Reviews.Find(id);
+            db.Reviews.Remove(review);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        #endregion
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -180,6 +278,6 @@ namespace RemixReview.Controllers
             ViewBag.MusicID = music.ID;
             ViewBag.UserID = User.Identity.GetUserId();
             return View(reviews);
-        }
+        } 
     }
 }

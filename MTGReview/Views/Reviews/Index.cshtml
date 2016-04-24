@@ -43,11 +43,25 @@
         <td>
             @Html.DisplayFor(modelItem => item.ReviewText)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
+        @if (User.IsInRole("Site Admin") || User.IsInRole("Music Admin")) {
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        }
+        else if (item.User.UserName == User.Identity.Name)
+        {
+            <td>
+                @Html.ActionLink("Edit", "UserEdit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "UserReviewDetails", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "UserDelete", new { id = item.ID })
+            </td>
+        }
+        else
+        {
+            @Html.ActionLink("Details", "UserReviewDetails", new { id = item.ID })
+        }
     </tr>
 }
 

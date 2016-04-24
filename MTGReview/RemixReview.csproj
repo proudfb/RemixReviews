@@ -166,6 +166,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AlbumsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IdentityRoleController.cs" />
@@ -312,6 +313,17 @@
     <Content Include="Views\Account\AddRoleToUser.cshtml" />
     <Content Include="Views\Error\AccessDenied.cshtml" />
     <Content Include="Views\Account\UserEdit.cshtml" />
+    <Content Include="Views\Albums\Create.cshtml" />
+    <Content Include="Views\Albums\Delete.cshtml" />
+    <Content Include="Views\Albums\Details.cshtml" />
+    <Content Include="Views\Albums\Edit.cshtml" />
+    <Content Include="Views\Albums\Index.cshtml" />
+    <Content Include="Views\Albums\ListAlbums.cshtml" />
+    <Content Include="Views\Music\ViewDetails.cshtml" />
+    <Content Include="Views\Reviews\UserReviews.cshtml" />
+    <Content Include="Views\Reviews\UserEdit.cshtml" />
+    <Content Include="Views\Reviews\UserDelete.cshtml" />
+    <Content Include="Views\Reviews\UserReviewDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

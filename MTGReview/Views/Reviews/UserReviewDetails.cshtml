@@ -1,0 +1,43 @@
+﻿@model RemixReview.Models.Review
+
+@{
+    ViewBag.Title = "UserReviewDetails";
+}
+
+<h2>UserReviewDetails</h2>
+
+<div>
+    <h4>Review</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Music.FileName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Music.FileName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReviewText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReviewText)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "UserEdit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index") |
+    @Html.ActionLink("Back to your reviews", "UserReviews")
+</p>

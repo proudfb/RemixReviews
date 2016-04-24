@@ -37,7 +37,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.ActionLink(item.FileName, "Details", new { id = item.ID })
+            @Html.ActionLink(item.FileName, "ViewDetails", new { id = item.ID })
         </td>
         <td>
             <a href="@item.Source">OverClocked Remix</a>
