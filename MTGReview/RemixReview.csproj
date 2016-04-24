@@ -199,8 +199,13 @@
     <Compile Include="Migrations\201604170107323_rolesec.Designer.cs">
       <DependentUpon>201604170107323_rolesec.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604240050392_Events.cs" />
+    <Compile Include="Migrations\201604240050392_Events.Designer.cs">
+      <DependentUpon>201604240050392_Events.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Album.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Music.cs" />
@@ -331,6 +336,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604170107323_rolesec.resx">
       <DependentUpon>201604170107323_rolesec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604240050392_Events.resx">
+      <DependentUpon>201604240050392_Events.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -36,6 +36,8 @@ namespace RemixReview.Models
 
         public DbSet<Review> Reviews { get; set; }
 
+        public DbSet<Album> Albums { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using RemixReview.Models;
+using RemixReview.CustomAttributes;
 
 namespace RemixReview.Controllers
 {
@@ -16,6 +17,7 @@ namespace RemixReview.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Reviews
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Index(string searchString = null)
         {
             var reviews = db.Reviews.Include(r => r.Music).Include(r => r.User);
@@ -27,6 +29,7 @@ namespace RemixReview.Controllers
         }
 
         // GET: Reviews/Details/5
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -42,6 +45,7 @@ namespace RemixReview.Controllers
         }
 
         // GET: Reviews/Create
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Create()
         {
             ViewBag.MusicID = new SelectList(db.Musics, "ID", "FileName");
@@ -53,6 +57,7 @@ namespace RemixReview.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,UserId,MusicID,ReviewText")] Review review)
         {
@@ -69,6 +74,7 @@ namespace RemixReview.Controllers
         }
 
         // GET: Reviews/Edit/5
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,6 +96,7 @@ namespace RemixReview.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Edit([Bind(Include = "ID,UserId,MusicID,ReviewText")] Review review)
         {
             if (ModelState.IsValid)
@@ -104,6 +111,7 @@ namespace RemixReview.Controllers
         }
 
         // GET: Reviews/Delete/5
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -121,6 +129,7 @@ namespace RemixReview.Controllers
         // POST: Reviews/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Review review = db.Reviews.Find(id);
@@ -130,13 +139,16 @@ namespace RemixReview.Controllers
         }
 
         [HttpGet]
-        public ActionResult UserCreate(string userID, int musicID)
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin, Music Admin, Reviewer")]
+        public ActionResult UserCreate(int musicID)
         {
-            Review userReview = new Review { UserId = userID, MusicID = musicID };
+            Review userReview = new Review { UserId = User.Identity.GetUserId(), MusicID = musicID };
             return View(userReview);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin, Music Admin, Reviewer")]
         public ActionResult UserCreate(Review review)
         {
             if (ModelState.IsValid)
@@ -165,7 +177,6 @@ namespace RemixReview.Controllers
             var music = db.Musics.Find(ID);
             ViewBag.musicFileName = music.FileName;
             ViewBag.MusicID = music.ID;
-            ViewBag.UserID = User.Identity.GetUserId();
             return View(reviews);
         }
     }
