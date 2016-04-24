@@ -389,14 +389,14 @@ namespace RemixReview.Migrations
                 {
                     Title = "Heart of a Gamer: A Tribute to Satoru Iwata",
                     HomepageLink = @"http://ocremix.org/info/Heart_of_a_Gamer:_A_Tribute_to_Satoru_Iwata",
-                    ImageLink= @"http://ocremix.org/thumbs/500/files/images/albums/1/5/71-185.png"
+                    ImageLink = @"http://ocremix.org/thumbs/500/files/images/albums/1/5/71-185.png"
                 },
 
                 new Album
                 {
                     Title = "Badass: Boss Themes: Volume III",
                     HomepageLink = @"http://badass3.ocremix.org/",
-                    ImageLink= @"http://ocremix.org/thumbs/500/files/images/albums/2/8/72-188.png"
+                    ImageLink = @"http://ocremix.org/thumbs/500/files/images/albums/2/8/72-188.png"
                 }
                 );
 
