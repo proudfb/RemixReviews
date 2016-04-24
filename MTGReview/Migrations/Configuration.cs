@@ -360,43 +360,37 @@ namespace RemixReview.Migrations
                 new Album
                 {
                     Title = "Vampire Variations: A Musical Tribute to Castlevania",
-                    HomepageLink = @"http://vampire.ocremix.org/",
-                    ImageLink = @"http://ocremix.org/thumbs/500/files/images/albums/7/1/67-181.png"
+                    HomepageLink = @"http://vampire.ocremix.org/"
                 },
 
                 new Album
                 {
                     Title = "Vampire Variations: Volume II",
-                    HomepageLink = @"http://vampire.ocremix.org/",
-                    ImageLink = @"http://ocremix.org/thumbs/500/files/images/albums/8/2/68-182.png"
+                    HomepageLink = @"http://vampire.ocremix.org/"
                 },
 
                 new Album
                 {
                     Title = "Vampire Variations: Volume III",
-                    HomepageLink = @"http://vampire.ocremix.org/",
-                    ImageLink = @"http://ocremix.org/thumbs/500/files/images/albums/9/3/69-183.png"
+                    HomepageLink = @"http://vampire.ocremix.org/"
                 },
 
                 new Album
                 {
                     Title = "Super Cartography Bros.",
-                    HomepageLink = @"http://cartography.ocremix.org/",
-                    ImageLink = @"http://ocremix.org/thumbs/500/files/images/albums/0/4/70-184.png"
+                    HomepageLink = @"http://cartography.ocremix.org/"
                 },
 
                 new Album
                 {
                     Title = "Heart of a Gamer: A Tribute to Satoru Iwata",
-                    HomepageLink = @"http://ocremix.org/info/Heart_of_a_Gamer:_A_Tribute_to_Satoru_Iwata",
-                    ImageLink = @"http://ocremix.org/thumbs/500/files/images/albums/1/5/71-185.png"
+                    HomepageLink = @"http://ocremix.org/info/Heart_of_a_Gamer:_A_Tribute_to_Satoru_Iwata"
                 },
 
                 new Album
                 {
                     Title = "Badass: Boss Themes: Volume III",
-                    HomepageLink = @"http://badass3.ocremix.org/",
-                    ImageLink = @"http://ocremix.org/thumbs/500/files/images/albums/2/8/72-188.png"
+                    HomepageLink = @"http://badass3.ocremix.org/"
                 }
                 );
 

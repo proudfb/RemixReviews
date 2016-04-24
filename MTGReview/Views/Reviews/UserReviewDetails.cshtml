@@ -36,8 +36,20 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "UserEdit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index") |
-    @Html.ActionLink("Back to your reviews", "UserReviews")
-</p>
+
+    @if (Model.User.UserName == User.Identity.Name)
+    {
+        <p>
+        @Html.ActionLink("Edit", "UserEdit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index") |
+        @Html.ActionLink("Back to your reviews", "UserReviews")
+        </p>
+    }
+    else
+    {
+        <p>
+            @Html.ActionLink("Back to List", "Index") |
+            @Html.ActionLink("Back to your reviews", "UserReviews")
+        </p>
+    }
+            

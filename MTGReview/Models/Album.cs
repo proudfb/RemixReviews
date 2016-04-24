@@ -18,9 +18,5 @@ namespace RemixReview.Models
         [Required]
         [RegularExpression(@"(http:\/\/[a-zA-z\d]*\.ocremix\.org\/?)|(http:\/\/ocremix\.org\/info\/[a-zA-z_:\d]*)")]
         public string HomepageLink { get; set; }
-
-        [Required]
-        [RegularExpression(@"http:\/\/ocremix.org\/thumbs\/[a-zA-z_:\d\/\-\.]*")]
-        public string ImageLink { get; set; }
     }
 }

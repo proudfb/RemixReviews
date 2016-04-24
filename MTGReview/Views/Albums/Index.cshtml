@@ -21,9 +21,6 @@
 <table class="table">
     <tr>
         <th>
-            Album Cover
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
@@ -35,10 +32,6 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                <img src="@item.ImageLink" alt="@item.Title" height="100" width="90" />
-                <br /> @Html.DisplayFor(modelItem => item.ImageLink)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>

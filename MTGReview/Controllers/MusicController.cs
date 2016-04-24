@@ -15,21 +15,9 @@ namespace RemixReview.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Music
-        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin")]
-        public ActionResult Index(string searchString = null)
-        {
-            var model = from m in db.Musics
-                        select m;
-            if (!(searchString==null))
-            {
-                model = model.Where(m => m.FileName.Contains(searchString));
-            }
-                //db.Musics.ToList();
-            return View(model.ToList());
-        }
+        
 
-        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin")]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin,Reviewer,User")]
         public ActionResult ListMusic(string searchString = null)
         {
             var model = from m in db.Musics
@@ -42,7 +30,7 @@ namespace RemixReview.Controllers
             return View(model.ToList());
         }
 
-        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin")]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin,Reviewer,User")]
         public ActionResult ListOfMusicByCategory(string category)
         {
             var music = db.Musics
@@ -51,9 +39,8 @@ namespace RemixReview.Controllers
             return View(music);
         }
 
-        // GET: Music/Details/5
-        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin")]
-        public ActionResult Details(int? id)
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin,Reviewer,User")]
+        public ActionResult ViewDetails(int? id)
         {
             if (id == null)
             {
@@ -67,8 +54,25 @@ namespace RemixReview.Controllers
             return View(music);
         }
 
-        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin,Reviewer,User")]
-        public ActionResult ViewDetails(int? id)
+        #region Admin CRUD
+
+        // GET: Music
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin")]
+        public ActionResult Index(string searchString = null)
+        {
+            var model = from m in db.Musics
+                        select m;
+            if (!(searchString == null))
+            {
+                model = model.Where(m => m.FileName.Contains(searchString));
+            }
+            //db.Musics.ToList();
+            return View(model.ToList());
+        }
+
+        // GET: Music/Details/5
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin")]
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -166,7 +170,8 @@ namespace RemixReview.Controllers
             db.Musics.Remove(music);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
+        } 
+        #endregion
 
         protected override void Dispose(bool disposing)
         {

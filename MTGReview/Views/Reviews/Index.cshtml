@@ -60,7 +60,9 @@
         }
         else
         {
-            @Html.ActionLink("Details", "UserReviewDetails", new { id = item.ID })
+            <td>
+                @Html.ActionLink("Details", "UserReviewDetails", new { id = item.ID })
+            </td>
         }
     </tr>
 }

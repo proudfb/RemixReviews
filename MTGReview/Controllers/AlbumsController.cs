@@ -68,7 +68,7 @@ namespace RemixReview.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
-        public ActionResult Create([Bind(Include = "ID,Title,HomepageLink,ImageLink")] Album album)
+        public ActionResult Create([Bind(Include = "ID,Title,HomepageLink")] Album album)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +102,7 @@ namespace RemixReview.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
-        public ActionResult Edit([Bind(Include = "ID,Title,HomepageLink,ImageLink")] Album album)
+        public ActionResult Edit([Bind(Include = "ID,Title,HomepageLink")] Album album)
         {
             if (ModelState.IsValid)
             {
