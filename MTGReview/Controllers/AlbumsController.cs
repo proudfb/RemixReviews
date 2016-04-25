@@ -16,7 +16,7 @@ namespace RemixReview.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Albums
-        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin,Reviewer,User")]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Index(string searchString = null)
         {
             var model = from m in db.Albums
@@ -28,6 +28,7 @@ namespace RemixReview.Controllers
             return View(model.ToList());
         }
 
+        [AllowAnonymous]
         [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin,Reviewer,User")]
         public ActionResult ListAlbums(string searchString = null)
         {
@@ -41,6 +42,8 @@ namespace RemixReview.Controllers
         }
 
         // GET: Albums/Details/5
+        [AllowAnonymous]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin,Reviewer,User")]
         public ActionResult Details(int? id)
         {
             if (id == null)

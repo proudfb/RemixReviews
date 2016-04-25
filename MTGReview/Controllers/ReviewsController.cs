@@ -18,6 +18,7 @@ namespace RemixReview.Controllers
 
         
         // GET: Reviews
+        [AllowAnonymous]
         [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin,Reviewer,User")]
         public ActionResult Index(string searchString = null)
         {
@@ -155,6 +156,7 @@ namespace RemixReview.Controllers
             return View(reviews.ToList());
         }
 
+        [AllowAnonymous]
         [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin,Reviewer,User")]
         public ActionResult UserReviewDetails(int? id)
         {

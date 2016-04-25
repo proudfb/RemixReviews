@@ -16,7 +16,7 @@ namespace RemixReview.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         
-
+        [AllowAnonymous]
         [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin,Reviewer,User")]
         public ActionResult ListMusic(string searchString = null)
         {
@@ -30,6 +30,7 @@ namespace RemixReview.Controllers
             return View(model.ToList());
         }
 
+        [AllowAnonymous]
         [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin,Reviewer,User")]
         public ActionResult ListOfMusicByCategory(string category)
         {
@@ -39,6 +40,7 @@ namespace RemixReview.Controllers
             return View(music);
         }
 
+        [AllowAnonymous]
         [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Music Admin,Reviewer,User")]
         public ActionResult ViewDetails(int? id)
         {
